@@ -1,5 +1,7 @@
 # Django settings for swipecheck project.
 
+import os
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -74,6 +76,9 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'acw_9#t(wzi0bl_92t%7&amp;n_3j^35%diugx*ob^ylbxk8#k*_lp'
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_COOKIE_HTTPONLY = True
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -145,3 +150,6 @@ LOGGING = {
 }
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+FOURSQUARE_CLIENT_ID = os.environ['FOURSQUARE_CLIENT_ID']
+FOURSQUARE_CLIENT_SECRET = os.environ['FOURSQUARE_CLIENT_SECRET']

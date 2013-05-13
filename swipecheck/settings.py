@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'swipe_foursquare',
+    'swipe_checkins',
 )
 
 # A sample logging configuration. The only tangible logging

@@ -35,5 +35,5 @@ def sms_received(request):
     valid, reason = validate_twilio_request(request)
     if not valid:
         raise SuspiciousOperation("Invalid Twilio request: {0}".format(reason))
-    models.Checkin.create(rfid=request, from_number=request.POST['From'])
+    models.Checkin.create(rfid=request.POST['Body'], from_number=request.POST['From'])
     return HttpResponse(status=204)

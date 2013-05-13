@@ -1,5 +1,13 @@
 // RFID2SMS
 // Read RFID from SL018/030, send the ID as an SMS using SM5100B.
+// Circuit:
+//   * Standard SM5100B shield from SparkFun
+//   * SL030 -> Arduino:
+//     - VCC -> 3V3
+//     - SDA -> A4
+//     - SCL -> A5
+//     - OUT -> A3
+//     - GND -> GND
 
 #define DEBUG 1
 

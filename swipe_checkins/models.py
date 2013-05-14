@@ -19,7 +19,7 @@ class UserRFID(models.Model):
     rfid = models.CharField(max_length=40, db_index=True)
 
 
-@receiver(models.signals.post_save)
+@receiver(models.signals.post_save, sender=Checkin)
 def push_checkin_signal(sender, instance, created, raw, using, *args, **kwargs):
     push_foursquare_checkin(instance)
 

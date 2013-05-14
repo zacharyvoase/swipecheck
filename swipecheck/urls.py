@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
@@ -9,4 +10,6 @@ urlpatterns = patterns('',
     url(r'^oauth-redirect/$', 'swipe_foursquare.views.oauth_redirect', name='oauth-redirect'),
     url(r'^sms/$', 'swipe_checkins.views.sms_received', name='twilio-sms'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': settings.STATIC_ROOT}),
 )

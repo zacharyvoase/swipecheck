@@ -1,9 +1,22 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 import foursquare
+import requests
 import urlobject
 
 from . import models
+
+
+def make_request(url, headers={}, data=None):
+    if data:
+        response = requests.post(url, data=data, headers=headers)
+    else:
+        response = requests.get(url, headers=headers)
+    if response.ok:
+        return foursquare._check_response(
+            foursquare._json_to_data(response.content))
+    response.raise_for_status()
+foursquare._request_with_retry = make_request
 
 
 class FoursquareUserMiddleware(object):

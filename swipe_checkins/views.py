@@ -2,6 +2,7 @@ from django.conf import settings
 from django.core.exceptions import SuspiciousOperation
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from twilio.util import RequestValidator
 from urlobject import URLObject
 
@@ -31,6 +32,7 @@ def validate_twilio_request(request):
     return True, None
 
 
+@csrf_exempt
 def sms_received(request):
     valid, reason = validate_twilio_request(request)
     if not valid:

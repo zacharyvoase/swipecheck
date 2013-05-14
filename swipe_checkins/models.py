@@ -29,4 +29,4 @@ def push_foursquare_checkin(checkin):
     user_rfid = UserRFID.objects.get(rfid=checkin.rfid)
     user = user_rfid.user
     client = user.get_foursquare_client()
-    return client.checkins.add(venue=location.venue_id)
+    return client.checkins.add({'venueId': location.venue_id})

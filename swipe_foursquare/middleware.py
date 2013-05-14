@@ -24,12 +24,15 @@ class FoursquareUserMiddleware(object):
         request.foursquare.is_authenticated = bool(request.foursquare.base_requester.oauth_token)
 
 
-def get_foursquare_client(request):
-    client = foursquare.Foursquare(
+def get_foursquare_client(request=None):
+    params = dict(
         client_id=settings.FOURSQUARE_CLIENT_ID,
         client_secret=settings.FOURSQUARE_CLIENT_SECRET,
-        redirect_uri=get_redirect_uri(request),
         version=settings.FOURSQUARE_API_VERSION)
+    if request:
+        params['redirect_uri'] = get_redirect_uri(request)
+    client = foursquare.Foursquare(**params)
+
     client.user = None
     user_id = request.session.get('foursquare_user_id')
     if user_id:

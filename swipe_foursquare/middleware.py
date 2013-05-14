@@ -18,6 +18,7 @@ def get_foursquare_client(request):
         client_secret=settings.FOURSQUARE_CLIENT_SECRET,
         redirect_uri=get_redirect_uri(request),
         version=settings.FOURSQUARE_API_VERSION)
+    client.user = None
     user_id = request.session.get('foursquare_user_id')
     if user_id:
         try:
@@ -26,6 +27,7 @@ def get_foursquare_client(request):
             del request.session['foursquare_user_id']
         else:
             client.set_access_token(oauth_token_record.oauth_token)
+            client.user = oauth_token_record
     return client
 
 

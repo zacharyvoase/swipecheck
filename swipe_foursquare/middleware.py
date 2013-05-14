@@ -13,9 +13,8 @@ def make_request(url, headers={}, data=None):
     else:
         response = requests.get(url, headers=headers)
     if response.ok:
-        return foursquare._check_response(
-            foursquare._json_to_data(response.content))
-    response.raise_for_status()
+        return response.json()
+    return foursquare._check_response(response.json())
 foursquare._request_with_retry = make_request
 
 

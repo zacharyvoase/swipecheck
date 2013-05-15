@@ -75,7 +75,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'acw_9#t(wzi0bl_92t%7&amp;n_3j^35%diugx*ob^ylbxk8#k*_lp'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_HTTPONLY = True

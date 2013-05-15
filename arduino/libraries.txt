@@ -1,0 +1,2 @@
+http://playground.arduino.cc/Code/QueueArray
+https://github.com/marcboon/RFIDuino/tree/master/SL018
